@@ -1,0 +1,12 @@
+.item-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.item-list-img {
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+}

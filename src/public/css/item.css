@@ -1,0 +1,16 @@
+.favorite-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+.star-icon {
+    color: grey;
+    transition: color 0.3s;
+}
+
+.star-icon.active {
+    color: red;
+}
