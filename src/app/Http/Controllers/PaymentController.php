@@ -9,6 +9,8 @@ use App\Http\Requests\PurchaseRequest;
 use App\Models\Profile;
 use App\Models\Item;
 use App\Models\Purchase;
+use Stripe\Stripe;
+use Stripe\Checkout\Session;
 
 class PaymentController extends Controller
 {
@@ -45,9 +47,8 @@ class PaymentController extends Controller
 
         $purchase->save();
 
-        return redirect()->route('purchases');
+        return redirect()->route('purchase', ['item_id' => $item_id]);
     }
-
 
     public function address($item_id)
     {

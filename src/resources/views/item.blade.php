@@ -15,10 +15,10 @@
     </div>
     <div class="item-text">
         <h2>{{ $item->name }}</h2>
+        <p>ブランド名</p>
         <p>¥{{ $item->price }}(税込)</p>
         <div class="favorite-button">
             @if (auth()->check() && auth()->user()->favorites->contains('item_id', $item->id))
-            {{-- お気に入り削除ボタン --}}
             <form action="{{ route('favorite.delete', ['item_id' => $item->id]) }}" method="POST">
                 @csrf
                 @method('DELETE')
@@ -29,7 +29,6 @@
                 </button>
             </form>
             @else
-            {{-- お気に入り追加ボタン --}}
             <form action="{{ route('favorite.create', ['item_id' => $item->id]) }}" method="POST">
                 @csrf
                 <button type="submit" class="favorite-btn" title="お気に入り追加">
@@ -39,7 +38,6 @@
                 </button>
             </form>
             @endif
-            {{-- お気に入り数の表示 --}}
             <p class="favorite-count">{{ $item->favorites->count() }}</p>
         </div>
         <div class="comment-button">

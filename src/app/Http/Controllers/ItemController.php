@@ -28,6 +28,7 @@ class ItemController extends Controller
             ->get();
 
         $favorites = auth()->check() ? auth()->user()->favorites()->with('item')->get() : collect();
+        $purchasedItems = $user ? $user->purchases()->pluck('item_id')->toArray() : [];
 
         if ($activeTab === 'mylist' && $keyword) {
             $favorites = $favorites->filter(function ($favorite) use ($keyword) {
@@ -35,7 +36,7 @@ class ItemController extends Controller
             });
         }
 
-        return view('index', compact('recommendedItems', 'favorites', 'activeTab', 'keyword'));
+        return view('index', compact('recommendedItems', 'favorites', 'activeTab', 'keyword', 'purchasedItems'));
     }
 
 
@@ -48,7 +49,7 @@ class ItemController extends Controller
         $activeTab = request('tab', 'recommended');
         $comments = $item->comments;
 
-        return view('item', compact('item', 'activeTab', 'comments'));
+        return view('item', compact('item', 'activeTab','comments'));
     }
 
     public function sell()

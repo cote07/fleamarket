@@ -20,9 +20,14 @@
     <label>支払い方法</label>
     <select name="payment" id="paymentSelect">
         <option value="" selected disabled>選択してください</option>
-        <option value="コンビニ支払い">コンビニ支払い</option>
-        <option value="カード支払い">カード支払い</option>
+        <option value="コンビニ支払い" {{ old('payment') == 'コンビニ支払い' ? 'selected' : '' }}>コンビニ支払い</option>
+        <option value="カード支払い" {{ old('payment') == 'カード支払い' ? 'selected' : '' }}>カード支払い</option>
     </select>
+    <div class="form__error">
+        @error('payment')
+        {{ $message }}
+        @enderror
+    </div>
     <label>配送先</label>
     <a href="{{ route('address', ['item_id' => $item_id]) }}">変更する</a>
     @php
@@ -31,10 +36,13 @@
     <input type="hidden" name="postal_code" value="{{ old('postal_code', $temporary_address['postal_code'] ?? $profile->postal_code) }}">
     <input type="hidden" name="address" value="{{ old('address', $temporary_address['address'] ?? $profile->address) }}">
     <input type="hidden" name="building" value="{{ old('building', $temporary_address['building'] ?? $profile->building) }}">
-
     <p>〒{{ $temporary_address['postal_code'] ?? $profile->postal_code }}</p>
     <p>{{ $temporary_address['address'] ?? $profile->address }}{{ $temporary_address['building'] ?? $profile->building }}</p>
-
+    <div class="form__error">
+        @error('shipping_address')
+        {{ $message }}
+        @enderror
+    </div>
     <div>
         <div>
             <p>商品代金</p>
@@ -46,4 +54,5 @@
         </div>
         <button id="checkout-button">購入する</button>
     </div>
-    @endsection
+</form>
+@endsection

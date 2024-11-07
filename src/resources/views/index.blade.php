@@ -21,6 +21,11 @@
             <img src="{{ asset('storage/' . $item->item_picture) }}" alt="item Image" class="item-list-img">
             @endif
         </a>
+        @if (in_array($item->id, $purchasedItems))
+        <div class="sold-content">
+            <span class="sold-label">Sold</span>
+        </div>
+        @endif
         <p>{{ $item->name }}</p>
     </div>
     @endforeach
@@ -40,6 +45,11 @@
             <img src="{{ asset('storage/' . $favorite->item->item_picture) }}" alt="item Image" class="item-list-img">
             @endif
         </a>
+        @if (in_array($favorite->item->id, $purchasedItems))
+        <div class="sold-content">
+            <span class="sold-label">Sold</span>
+        </div>
+        @endif
         <p>{{ $favorite->item->name }}</p>
     </div>
 
