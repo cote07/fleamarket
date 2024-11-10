@@ -26,29 +26,27 @@ class PaymentController extends Controller
     public function store(PurchaseRequest $request, $item_id)
     {
         $item = Item::findOrFail($item_id);
-        $user = Auth::user();
-        $profile = $user->profile;
-        $purchase = new Purchase();
-        $purchase->user_id = $user->id;
-        $purchase->item_id = $item->id;
-        $purchase->payment = $request->payment;
-        $temporary_address = session('temporary_address_item' . $item_id);
+        \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
 
-        if ($temporary_address) {
-            $purchase->postal_code = $temporary_address['postal_code'];
-            $purchase->address = $temporary_address['address'];
-            $purchase->building = $temporary_address['building'];
-            session()->forget('temporary_address_item' . $item_id);
-        } else {
-            $purchase->postal_code = $profile->postal_code;
-            $purchase->address = $profile->address;
-            $purchase->building = $profile->building;
-        }
+        $session = \Stripe\Checkout\Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'jpy',
+                    'product_data' => [
+                        'name' => $item->name,
+                    ],
+                    'unit_amount' => $item->price * 100,
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => route('purchase.success', ['item_id' => $item_id]),
+            'cancel_url' => route('purchase', ['item_id' => $item_id]),
+        ]);
 
-        $purchase->save();
-
-        return redirect()->route('purchase', ['item_id' => $item_id]);
-    }
+        return redirect($session->url, 303);
+     }
 
     public function address($item_id)
     {
@@ -73,4 +71,32 @@ class PaymentController extends Controller
 
         return redirect()->route('purchase', ['item_id' => $item_id]);
     }
+
+    public function success(Request $request, $item_id)
+    {
+        $item = Item::findOrFail($item_id);
+        $user = Auth::user();
+        $profile = $user->profile;
+        $purchase = new Purchase();
+        $purchase->user_id = $user->id;
+        $purchase->item_id = $item->id;
+        $purchase->payment = 'カード支払い';
+        $temporary_address = session('temporary_address_item' . $item_id);
+
+        if ($temporary_address) {
+            $purchase->postal_code = $temporary_address['postal_code'];
+            $purchase->address = $temporary_address['address'];
+            $purchase->building = $temporary_address['building'];
+            session()->forget('temporary_address_item' . $item_id);
+        } else {
+            $purchase->postal_code = $profile->postal_code;
+            $purchase->address = $profile->address;
+            $purchase->building = $profile->building;
+        }
+
+        $purchase->save();
+
+        return view('complete', ['item' => $item]);
+    }
+
 }

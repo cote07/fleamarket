@@ -30,6 +30,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/sell', [ItemController::class, 'store'])->name('sell.store');
     Route::get('/purchase/{item_id}', [PaymentController::class, 'purchase'])->name('purchase');
     Route::post('/purchase/{item_id}', [PaymentController::class, 'store'])->name('purchase.store');
+    Route::get('/purchase/{item_id}/success', [PaymentController::class, 'success'])->name('purchase.success');
     Route::get('/purchase/address/{item_id}', [PaymentController::class, 'address'])->name('address');
     Route::patch('/purchase/address/{item_id}', [PaymentController::class, 'update'])->name('address.update');
     Route::post('/item/{item_id}/favorites', [FavoriteController::class, 'create'])->name('favorite.create');
