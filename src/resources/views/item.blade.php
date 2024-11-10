@@ -14,74 +14,80 @@
         @endif
     </div>
     <div class="item-text">
-        <h2>{{ $item->name }}</h2>
-        <p>ブランド名</p>
-        <p>¥{{ $item->price }}(税込)</p>
-        <div class="favorite-button">
-            @if (auth()->check() && auth()->user()->favorites->contains('item_id', $item->id))
-            <form action="{{ route('favorite.delete', ['item_id' => $item->id]) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="favorite-btn" title="お気に入り削除">
-                    <span class="material-icons-outlined star-icon active">
-                        star
-                    </span>
-                </button>
-            </form>
-            @else
-            <form action="{{ route('favorite.create', ['item_id' => $item->id]) }}" method="POST">
-                @csrf
-                <button type="submit" class="favorite-btn" title="お気に入り追加">
-                    <span class="material-icons-outlined star-icon">
-                        star
-                    </span>
-                </button>
-            </form>
-            @endif
-            <p class="favorite-count">{{ $item->favorites->count() }}</p>
+        <h2 class="item-name">{{ $item->name }}</h2>
+        <p class="item-brand">ブランド名</p>
+        <p class="item-price">¥{{ $item->price }}(税込)</p>
+        <div class="flex">
+            <div class="favorite-button">
+                @if (auth()->check() && auth()->user()->favorites->contains('item_id', $item->id))
+                <form action="{{ route('favorite.delete', ['item_id' => $item->id]) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="favorite-btn" title="お気に入り削除">
+                        <span class="material-icons-outlined star-icon active">
+                            star
+                        </span>
+                    </button>
+                </form>
+                @else
+                <form action="{{ route('favorite.create', ['item_id' => $item->id]) }}" method="POST">
+                    @csrf
+                    <button type="submit" class="favorite-btn" title="お気に入り追加">
+                        <span class="material-icons-outlined star-icon">
+                            star
+                        </span>
+                    </button>
+                </form>
+                @endif
+                <p class="favorite-count">{{ $item->favorites->count() }}</p>
+            </div>
+            <div class="comment-button">
+                <span class="material-icons-outlined chat-icon">
+                    chat_bubble
+                </span>
+                <p class="comment-count">{{ $item->comments->count() }}</p>
+            </div>
         </div>
-        <div class="comment-button">
-            <span class="material-icons-outlined">
-                chat_bubble
-            </span>
-            <p class="comment-count">{{ $item->comments->count() }}</p>
-        </div>
-        <a href="{{ route('purchase', ['item_id' => $item->id]) }}">購入手続きへ</a>
+        <a href="{{ route('purchase', ['item_id' => $item->id]) }}" class="purchase-link">購入手続きへ</a>
         <div class="description">
-            <h3>商品説明</h3>
-            <p>{{ $item->description }}</p>
+            <h3 class="subtitle">商品説明</h3>
+            <p class="description-text">{{ $item->description }}</p>
         </div>
         <div class="information">
-            <h3>商品の情報</h3>
+            <h3 class="subtitle">商品の情報</h3>
             <div>
-                <p>カテゴリー</p>
-                    <ul>
+                <div class="information-flex">
+                    <p class="information-text">カテゴリー</p>
+                    <div>
                         @foreach($item->categories as $category)
-                        <li>{{ $category->content }}</li>
+                        <span class="span">{{ $category->content }}</span>
                         @endforeach
-                    </ul>
-                <p>商品の状態<span>{{ $item->condition }}</span></p>
+                    </div>
+                </div>
+                <p class="information-text">商品の状態<span class="span">{{ $item->condition }}</span></p>
             </div>
         </div>
         <div class="comment">
-            <h3>コメント({{ $item->comments->count() }})</h3>
+            <h3 class="comment-title">コメント({{ $item->comments->count() }})</h3>
             @foreach($comments as $comment)
             <div class="comment-box">
-                <img src="{{ asset('storage/' . $comment->user->profile->profile_picture) }}" alt="profile image">
-                <p>{{ $comment->user->name }}</p>
-                <p>{{ $comment->content }}</p>
+                <div class="comment-flex">
+                    <img src="{{ asset('storage/' . $comment->user->profile->profile_picture) }}" alt="profile image" class="comment-img">
+                    <p class="name">{{ $comment->user->name }}</p>
+                </div>
+                <p class="comment-text">{{ $comment->content }}</p>
             </div>
             @endforeach
             <form action="{{ route('comments.store', $item->id) }}" method="POST">
                 @csrf
-                <p>商品へのコメント</p>
-                <textarea name="content" rows="6"></textarea>
+                <p class="information-text">商品へのコメント</p>
+                <textarea name="content" class="comment-textarea"></textarea>
                 <div class="form__error">
                     @error('content')
                     {{ $message }}
                     @enderror
                 </div>
-                <button type="submit">コメントを送信する</button>
+                <button type="submit" class="form__button-submit">コメントを送信する</button>
             </form>
         </div>
     </div>

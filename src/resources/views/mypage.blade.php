@@ -5,9 +5,13 @@
 @endsection
 
 @section('content')
-<img src="{{ $profile->profile_picture ? asset('storage/' . $profile->profile_picture) : asset('img/sample.jpg') }}" alt="profile image">
-<h2>{{ $user->name }}</h2>
-<a href="{{ route('profile') }}">プロフィールを編集</a>
+<div class="flex">
+    <div class="flex-image">
+        <img id="profile-image" src="{{ $profile->profile_picture ? asset('storage/' . $profile->profile_picture) : asset('img/sample.jpg') }}" alt="profile image">
+        <h2 class="name">{{ $user->name }}</h2>
+    </div>
+    <a href="{{ route('profile') }}" class="profile-link">プロフィールを編集</a>
+</div>
 
 <div class="tabs">
     <a href="/mypage?tab=sell" class="tab-link {{ $activeTab === 'sell' ? 'active' : '' }}">出品した商品</a>

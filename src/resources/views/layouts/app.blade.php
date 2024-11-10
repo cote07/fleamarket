@@ -52,7 +52,7 @@
                         <li class="menu-list"><a href="/login" class="menu-link">ログイン</a></li>
                         @endif
                         <li class="menu-list"><a href="/mypage" class="menu-link">マイページ</a></li>
-                        <li class="menu-list"><a href="/sell" class="menu-link">出品</a></li>
+                        <li class="menu-list"><a href="/sell" class="menu-link link-sell">出品</a></li>
                     </ul>
                 </nav>
             </div>
@@ -64,6 +64,7 @@
     </main>
 
     <script src="{{ asset('js/script.js') }}"></script>
+    @yield('js')
 </body>
 
 </html>

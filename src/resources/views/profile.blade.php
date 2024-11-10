@@ -6,16 +6,20 @@
 
 @section('content')
 <div class="profile-content">
-    <h2>プロフィール設定</h2>
+    <div class="form__heading">
+        <h2 class="form__title">プロフィール設定</h2>
+    </div>
     <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data" class="form">
         @csrf
         @method('PATCH')
         <div class="form-group">
-            <div class="flex">
+            <div class="image-flex">
                 <div class="picture">
-                    <img id="profile-image-preview" src="{{ $profile->profile_picture ? asset('storage/' . $profile->profile_picture) : asset('img/sample.jpg') }}" alt="profile image">
+                    <img id="profile-image" src="{{ $profile->profile_picture ? asset('storage/' . $profile->profile_picture) : asset('img/sample.jpg') }}" alt="profile image">
                 </div>
+                <label for="profile-picture-input" class="picture-label">画像を選択する</label>
                 <input type="file" name="profile_picture" accept="image/*" id="profile-picture-input">
+                <p id="picture-select">選択しました</p>
             </div>
             <div class="form__error">
                 @error('profile_picture')
@@ -68,7 +72,7 @@
             </div>
         </div>
         <div>
-            <button type="submit" class="button">更新する</button>
+            <button type="submit" class="form__button-submit">更新する</button>
         </div>
     </form>
 </div>

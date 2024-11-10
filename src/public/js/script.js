@@ -42,3 +42,23 @@ document.getElementById('keyword-input').addEventListener('keypress', function(e
             selectPayment.textContent = paymentSelect.value ? paymentSelect.value : '';
         });
  });
+
+ document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('profile-picture-input').addEventListener('change', function() {
+            var pictureSelectMessage = document.getElementById('picture-select');
+
+            if (this.files && this.files.length > 0) {
+                pictureSelectMessage.style.display = 'block';
+            }
+        });
+    });
+
+ document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('item_picture-input').addEventListener('change', function() {
+            var pictureSelectMessage = document.getElementById('picture-select');
+
+            if (this.files && this.files.length > 0) {
+                pictureSelectMessage.style.display = 'block';
+            }
+        });
+    });

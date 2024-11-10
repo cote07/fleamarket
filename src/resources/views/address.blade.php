@@ -6,7 +6,9 @@
 
 @section('content')
 <div class="address-content">
-    <h2>住所の変更</h2>
+    <div class="form__heading">
+        <h2 class="form__title">住所の変更</h2>
+    </div>
     <form action="{{ route('address.update', ['item_id' => $item_id]) }}" method="POST" enctype="multipart/form-data" class="form">
         @csrf
         @method('PATCH')
@@ -44,7 +46,7 @@
             </div>
         </div>
         <div>
-            <button type="submit" class="button">更新する</button>
+            <button type="submit" class="form__button-submit">更新する</button>
         </div>
     </form>
 </div>

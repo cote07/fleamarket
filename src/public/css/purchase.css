@@ -1,0 +1,160 @@
+.item-list-img {
+    width: 177px;
+    height: 177px;
+}
+
+.flex {
+    display: flex;
+    gap: 2rem;
+}
+
+#paymentSelect {
+    margin-left: 96px;
+    width: 265px;
+    height: 31px;
+    margin-top: 20px;
+}
+
+.address-flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+    padding: 60px;
+    max-width: 1540px;
+    margin: auto;
+}
+
+.form-group {
+    padding-bottom: 59px;
+    padding-top: 30px;
+    border-bottom: 1px solid #000;
+}
+
+
+.custom-button {
+    border: none;
+    background-color: #FF5555;
+    width: 100%;
+    height: 60px;
+    font-weight: 700;
+    font-size: 26px;
+    color: #fff;
+    border-radius: 4px;
+    margin-top: 65px;
+}
+
+.content {
+    width: 440px;
+}
+
+.detail-box {
+    border: 1px solid #000;
+}
+
+.form-content {
+    width: 805px;
+}
+
+.address-change {
+    text-decoration: none;
+    color: #0073cc;
+    font-size: 20px;
+}
+
+.address-text {
+    font-size: 20px;
+    font-weight: 600;
+    margin-left: 96px;
+}
+
+.form-label {
+    font-size: 20px;
+    font-weight: 700;
+    display: block;
+    margin-left: 35px;
+    margin-bottom: 30px;
+}
+
+.item-name {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.item-price {
+    font-size: 27px;
+}
+
+.detail-table {
+    width: 440px;
+    height: 230px;
+    border-collapse: collapse;
+}
+
+.detail-row {
+    border: 1px solid #000;
+    padding: 10px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.detail-cell span {
+    display: block;
+}
+
+.detail-label {
+    font-size: 20px;
+}
+
+.detail-value {
+    font-size: 24px;
+}
+
+.span {
+    font-size: 20px;
+}
+
+@media (max-width: 1200px) {
+    .form {
+        flex-direction: column;
+        align-items: center;
+        max-width: 805px;
+    }
+
+    .form-content {
+        width: 100%;
+    }
+
+    .detail-table {
+        width: 100%;
+    }
+
+    .content {
+        width: 100%;
+        max-width: 440px;
+    }
+
+    .form-label {
+        margin-left: 10px;
+    }
+
+    #paymentSelect {
+        margin-left: 10px;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .address-text {
+        margin-left: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+   .flex {
+    flex-direction: column;
+   }
+}

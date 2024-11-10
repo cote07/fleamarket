@@ -6,13 +6,15 @@
     width: 100%;
     background-color: #000;
     color: #fff;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .header-inner {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 0 auto;
 }
 
@@ -40,8 +42,7 @@
 #keyword-input {
     padding: 8px;
     font-size: 1em;
-    width: 100%;
-    max-width: 400px;
+    width: 563px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
@@ -52,6 +53,7 @@
 
 .menu-list-content {
     display: flex;
+    align-items: baseline;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -65,7 +67,7 @@
 .logout-link {
     color: #fff;
     text-decoration: none;
-    font-size: 1em;
+    font-size: 24px;
 }
 
 .logout-link {
@@ -73,14 +75,20 @@
     border: none;
     color: #fff;
     cursor: pointer;
-    font-size: 1em;
+}
+
+.link-sell {
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 5px 10px;
+    color: #000;
 }
 
 .hamburger-menu {
     display: none;
 }
 
-@media (min-width: 769px) {
+@media (min-width: 1301px) {
     .menu {
         display: flex;
     }
@@ -95,26 +103,30 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1300px) {
 
     .menu {
         display: none;
         flex-direction: column;
-        position: absolute;
-        top: 80px;
-        right: 0;
+        position: fixed;
+        top: 0px;
+        right: 0px;
         width: 100%;
+        height: 100%;
         background-color: #333;
         border-top: 1px solid #555;
+        z-index: 999;
     }
 
     .menu-list-content {
         flex-direction: column;
+        align-items: center;
+        margin-top: 100px;
     }
 
     .menu-list {
         margin: 0;
-        padding: 10px 0;
+        padding: 20px 0;
         text-align: center;
     }
 
@@ -125,10 +137,10 @@
     #keyword-input {
         display: none;
         position: absolute;
-        top: 80px;
+        top: 85px;
         left: 50%;
         transform: translateX(-50%);
-        width: 100%;
+        width: 80%;
     }
 
     .search-content.active #keyword-input {
@@ -138,6 +150,10 @@
     .hamburger-menu {
         display: block;
         cursor: pointer;
+        position: absolute;
+        top: 27px;
+        right: 50px;
+        z-index: 1000;
     }
 
     #menu-icon {
@@ -146,6 +162,7 @@
 
     #close-icon {
         display: none;
+        position: fixed;
     }
 
     .menu.open #menu-icon {
