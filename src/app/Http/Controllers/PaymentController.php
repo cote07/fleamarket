@@ -28,6 +28,10 @@ class PaymentController extends Controller
         $item = Item::findOrFail($item_id);
         \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
 
+        $paymentMethod = $request->payment;
+        session(['payment_method' => $paymentMethod]);
+
+        if ($paymentMethod === 'カード支払い') {
         $session = \Stripe\Checkout\Session::create([
             'payment_method_types' => ['card'],
             'line_items' => [[
@@ -36,7 +40,7 @@ class PaymentController extends Controller
                     'product_data' => [
                         'name' => $item->name,
                     ],
-                    'unit_amount' => $item->price * 100,
+                    'unit_amount' => $item->price,
                 ],
                 'quantity' => 1,
             ]],
@@ -44,6 +48,26 @@ class PaymentController extends Controller
             'success_url' => route('purchase.success', ['item_id' => $item_id]),
             'cancel_url' => route('purchase', ['item_id' => $item_id]),
         ]);
+    }
+
+        if ($paymentMethod === 'コンビニ支払い') {
+            $session = \Stripe\Checkout\Session::create([
+                'payment_method_types' => ['konbini'],
+                'line_items' => [[
+                    'price_data' => [
+                        'currency' => 'jpy',
+                        'product_data' => [
+                            'name' => $item->name,
+                        ],
+                        'unit_amount' => $item->price,
+                    ],
+                    'quantity' => 1,
+                ]],
+                'mode' => 'payment',
+                'success_url' => route('purchase.success', ['item_id' => $item_id]),
+                'cancel_url' => route('purchase', ['item_id' => $item_id]),
+            ]);
+        }
 
         return redirect($session->url, 303);
      }
@@ -77,10 +101,12 @@ class PaymentController extends Controller
         $item = Item::findOrFail($item_id);
         $user = Auth::user();
         $profile = $user->profile;
+        $paymentMethod = session('payment_method');
+
         $purchase = new Purchase();
         $purchase->user_id = $user->id;
         $purchase->item_id = $item->id;
-        $purchase->payment = 'カード支払い';
+        $purchase->payment = $paymentMethod;
         $temporary_address = session('temporary_address_item' . $item_id);
 
         if ($temporary_address) {

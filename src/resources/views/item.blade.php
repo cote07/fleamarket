@@ -64,7 +64,7 @@
                         @endforeach
                     </div>
                 </div>
-                <p class="information-text">商品の状態<span class="span">{{ $item->condition }}</span></p>
+                <p class="information-text">商品の状態<span class="span-condition">{{ $item->condition }}</span></p>
             </div>
         </div>
         <div class="comment">
@@ -72,7 +72,7 @@
             @foreach($comments as $comment)
             <div class="comment-box">
                 <div class="comment-flex">
-                    <img src="{{ asset('storage/' . $comment->user->profile->profile_picture) }}" alt="profile image" class="comment-img">
+                    <img src="{{ $comment->user->profile->profile_picture ? asset('storage/' . $comment->user->profile->profile_picture) : asset('img/sample.jpg') }}" alt="profile image" class="comment-img">
                     <p class="name">{{ $comment->user->name }}</p>
                 </div>
                 <p class="comment-text">{{ $comment->content }}</p>

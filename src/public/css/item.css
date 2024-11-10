@@ -122,6 +122,12 @@
     margin-left: 50px;
 }
 
+.span-condition {
+    font-weight: 400;
+    margin-left: 70px;
+    font-size: 20px;
+}
+
 .comment-title {
     font-size: 36px;
     font-weight: 700;
@@ -157,7 +163,7 @@
 
 .comment-count {
     text-align: center;
-    line-height:0;
+    line-height: 0;
 }
 
 .favorite-count {
@@ -170,21 +176,21 @@
 }
 
 @media (max-width: 1200px) {
-   .item-detail {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-   }
+    .item-detail {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 
-   .item-list-img {
-      width: 100%;
-      height: auto;
-      max-width: 580px;
-   }
+    .item-list-img {
+        width: 100%;
+        height: auto;
+        max-width: 580px;
+    }
 
-   .item-text {
-       max-width: 570px;
-       width: 100%;
-       padding: 10px;
-   }
+    .item-text {
+        max-width: 570px;
+        width: 100%;
+        padding: 10px;
+    }
 }
