@@ -1,0 +1,17 @@
+.content {
+    text-align: center;
+    background-color: #e5e5e5;
+    width: 350PX;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 4PX;
+    padding: 30px;
+}
+
+.link {
+    text-decoration: none;
+    background-color: #FF5555;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 4px;
+}

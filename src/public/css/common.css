@@ -2,6 +2,11 @@
     line-height: 0.8;
 }
 
+.form__error {
+    margin-top: 10px;
+    color: #ff0000;
+}
+
 .header {
     width: 100%;
     background-color: #000;

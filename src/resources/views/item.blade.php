@@ -48,7 +48,11 @@
                 <p class="comment-count">{{ $item->comments->count() }}</p>
             </div>
         </div>
+        @if (in_array($item->id, $allPurchasedItems))
+        <p class="purchase-disabled-message">この商品は売り切れです。</p>
+        @else
         <a href="{{ route('purchase', ['item_id' => $item->id]) }}" class="purchase-link">購入手続きへ</a>
+        @endif
         <div class="description">
             <h3 class="subtitle">商品説明</h3>
             <p class="description-text">{{ $item->description }}</p>
@@ -81,7 +85,7 @@
             <form action="{{ route('comments.store', $item->id) }}" method="POST">
                 @csrf
                 <p class="information-text">商品へのコメント</p>
-                <textarea name="content" class="comment-textarea"></textarea>
+                <textarea name="content" class="comment-textarea">{{ old('content') }}</textarea>
                 <div class="form__error">
                     @error('content')
                     {{ $message }}

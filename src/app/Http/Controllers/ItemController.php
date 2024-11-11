@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Favorite;
 use App\Models\Category;
+use App\Models\Purchase;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ExhibitionRequest;
 
@@ -29,6 +30,7 @@ class ItemController extends Controller
 
         $favorites = auth()->check() ? auth()->user()->favorites()->with('item')->get() : collect();
         $purchasedItems = $user ? $user->purchases()->pluck('item_id')->toArray() : [];
+        $allPurchasedItems = Purchase::pluck('item_id')->toArray();
 
         if ($activeTab === 'mylist' && $keyword) {
             $favorites = $favorites->filter(function ($favorite) use ($keyword) {
@@ -36,20 +38,17 @@ class ItemController extends Controller
             });
         }
 
-        return view('index', compact('recommendedItems', 'favorites', 'activeTab', 'keyword', 'purchasedItems'));
+        return view('index', compact('recommendedItems', 'favorites', 'activeTab', 'keyword','purchasedItems', 'allPurchasedItems'));
     }
-
-
-
-
 
     public function item($item_id)
     {
         $item = Item::with(['comments.user.profile', 'categories'])->findOrFail($item_id);
         $activeTab = request('tab', 'recommended');
         $comments = $item->comments;
+        $allPurchasedItems = Purchase::pluck('item_id')->toArray();
 
-        return view('item', compact('item', 'activeTab','comments'));
+        return view('item', compact('item', 'activeTab','comments', 'allPurchasedItems'));
     }
 
     public function sell()
