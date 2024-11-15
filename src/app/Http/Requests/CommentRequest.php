@@ -32,7 +32,7 @@ class CommentRequest extends FormRequest
     {
         return [
             'content.required' => 'コメントを入力してください',
-            'content.max' => '商品説明は最大255文字までです。',
+            'content.max' => 'コメントは最大255文字までです',
         ];
     }
 }

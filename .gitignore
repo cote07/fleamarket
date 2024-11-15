@@ -1,3 +1,4 @@
 docker/mysql/data/*
+docker/mysql/test_data/*
 !.gitkeep
 .DS_Store

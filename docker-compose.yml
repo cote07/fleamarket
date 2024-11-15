@@ -29,6 +29,19 @@ services:
       - ./docker/mysql/data:/var/lib/mysql
       - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
 
+  test_db:
+    image: mysql:8.0.26
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test_db
+      MYSQL_USER: test_user
+      MYSQL_PASSWORD: test_pass
+    command:
+      mysqld --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./docker/mysql/test_data:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     environment:
