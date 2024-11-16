@@ -49,7 +49,7 @@
             </div>
         </div>
         @if (in_array($item->id, $allPurchasedItems))
-        <p class="purchase-disabled-message">この商品は売り切れです。</p>
+        <p class="purchase-disabled-message">この商品は売り切れです</p>
         @else
         <a href="{{ route('purchase', ['item_id' => $item->id]) }}" class="purchase-link">購入手続きへ</a>
         @endif

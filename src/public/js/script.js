@@ -3,7 +3,7 @@ function toggleMenu() {
     const menuIcon = document.getElementById('menu-icon');
     const closeIcon = document.getElementById('close-icon');
 
-menu.classList.toggle("open");
+    menu.classList.toggle("open");
 
     if (menu.classList.contains("open")) {
         menuIcon.style.display = "none";
@@ -27,38 +27,38 @@ document.querySelector(".search-icon").addEventListener("click", function () {
     }
 });
 
-document.getElementById('keyword-input').addEventListener('keypress', function(event) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            document.getElementById('search-form').submit();
-        }
+document.getElementById('keyword-input').addEventListener('keypress', function (event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        document.getElementById('search-form').submit();
+    }
 });
 
- document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
-        const paymentSelect = document.getElementById('paymentSelect');
-        const selectPayment = document.querySelector('.payment-method');
-        paymentSelect.addEventListener('change', function() {
-            selectPayment.textContent = paymentSelect.value ? paymentSelect.value : '';
-        });
- });
-
- document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('profile-picture-input').addEventListener('change', function() {
-            var pictureSelectMessage = document.getElementById('picture-select');
-
-            if (this.files && this.files.length > 0) {
-                pictureSelectMessage.style.display = 'block';
-            }
-        });
+    const paymentSelect = document.getElementById('paymentSelect');
+    const selectPayment = document.querySelector('.payment-method');
+    paymentSelect.addEventListener('change', function () {
+        selectPayment.textContent = paymentSelect.value ? paymentSelect.value : '';
     });
+});
 
- document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('item_picture-input').addEventListener('change', function() {
-            var pictureSelectMessage = document.getElementById('picture-select');
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('profile-picture-input').addEventListener('change', function () {
+        var pictureSelectMessage = document.getElementById('picture-select');
 
-            if (this.files && this.files.length > 0) {
-                pictureSelectMessage.style.display = 'block';
-            }
-        });
+        if (this.files && this.files.length > 0) {
+            pictureSelectMessage.style.display = 'block';
+        }
     });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('item_picture-input').addEventListener('change', function () {
+        var pictureSelectMessage = document.getElementById('picture-select');
+
+        if (this.files && this.files.length > 0) {
+            pictureSelectMessage.style.display = 'block';
+        }
+    });
+});

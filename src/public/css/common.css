@@ -109,7 +109,6 @@
 }
 
 @media (max-width: 1300px) {
-
     .menu {
         display: none;
         flex-direction: column;

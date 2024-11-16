@@ -34,11 +34,11 @@ class AddressRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'ユーザー名は必須です。',
-            'postal_code.required' => '郵便番号は必須です。',
-            'postal_code.regex' => '郵便番号は「XXX-XXXX」の形式で入力してください。',
-            'address.required' => '住所は必須です。',
-            'building.required' => '建物名は必須です。',
+            'name.required' => 'ユーザー名は必須です',
+            'postal_code.required' => '郵便番号は必須です',
+            'postal_code.regex' => '郵便番号は「XXX-XXXX」の形式で入力してください',
+            'address.required' => '住所は必須です',
+            'building.required' => '建物名は必須です',
         ];
     }
 }

@@ -58,11 +58,9 @@
             </div>
         </div>
     </header>
-
     <main class="main">
         @yield('content')
     </main>
-
     <script src="{{ asset('js/script.js') }}"></script>
 </body>
 

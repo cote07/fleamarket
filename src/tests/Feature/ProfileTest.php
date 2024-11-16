@@ -44,7 +44,7 @@ class ProfileTest extends TestCase
             'item_picture' => 'sample-image.jpg',
         ]);
 
-         Profile::create([
+        Profile::create([
             'user_id' => $user->id,
             'postal_code' => '123-4567',
             'address' => 'Some Address, City',

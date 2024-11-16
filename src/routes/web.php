@@ -35,7 +35,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/purchase/address/{item_id}', [PaymentController::class, 'update'])->name('address.update');
     Route::post('/item/{item_id}/favorites', [FavoriteController::class, 'create'])->name('favorite.create');
     Route::delete('/item/{item_id}/favorites', [FavoriteController::class, 'delete'])->name('favorite.delete');
-    Route::post('/items/{item}/comments', [CommentController::class, 'store'])->name('comments.store');
+    Route::post('/items/{item_id}/comments', [CommentController::class, 'store'])->name('comments.store');
 });
 
 Route::post('/login', [AuthController::class, 'store']);

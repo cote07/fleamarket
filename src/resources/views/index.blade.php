@@ -6,10 +6,9 @@
 
 @section('content')
 <div class="tabs">
-    <a href="/?tab=recommended&keyword={{ request('keyword', '') }}" class="tab-link {{ $activeTab === 'recommended' ? 'active' : '' }}">おすすめ商品</a>
+    <a href="/?tab=recommended&keyword={{ request('keyword', '') }}" class="tab-link {{ $activeTab === 'recommended' ? 'active' : '' }}">おすすめ</a>
     <a href="/?tab=mylist&keyword={{ request('keyword', '') }}" class="tab-link {{ $activeTab === 'mylist' ? 'active' : '' }}">マイリスト</a>
 </div>
-
 @if ($activeTab === 'recommended')
 <div class="item-content">
     @foreach($recommendedItems as $item)
@@ -31,12 +30,10 @@
     @endforeach
 </div>
 @endif
-
 @if ($activeTab === 'mylist')
 @if (Auth::check())
 <div class=" item-content">
     @foreach($favorites as $favorite)
-
     <div class="item-list">
         <a href="{{ route('item', ['item_id' => $favorite->item->id]) }}">
             @if (Str::startsWith($favorite->item->item_picture, 'http'))
@@ -52,7 +49,6 @@
         @endif
         <p>{{ $favorite->item->name }}</p>
     </div>
-
     @endforeach
 </div>
 @endif

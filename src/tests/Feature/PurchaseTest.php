@@ -45,10 +45,10 @@ class PurchaseTest extends TestCase
 
         $mockSession = \Mockery::mock('overload:\Stripe\Checkout\Session');
         $mockSession->shouldReceive('create')
-        ->once()
-        ->andReturn((object)[
-            'url' => route('purchase.success', ['item_id' => $item->id])
-        ]);
+            ->once()
+            ->andReturn((object)[
+                'url' => route('purchase.success', ['item_id' => $item->id])
+            ]);
 
         $response = $this->post(route('purchase.store', ['item_id' => $item->id]), [
             'payment' => 'カード支払い',
@@ -98,10 +98,10 @@ class PurchaseTest extends TestCase
 
         $mockSession = \Mockery::mock('overload:\Stripe\Checkout\Session');
         $mockSession->shouldReceive('create')
-        ->once()
-        ->andReturn((object)[
-            'url' => route('purchase.success', ['item_id' => $item->id])
-        ]);
+            ->once()
+            ->andReturn((object)[
+                'url' => route('purchase.success', ['item_id' => $item->id])
+            ]);
 
         $response = $this->post(route('purchase.store', ['item_id' => $item->id]), [
             'payment' => 'カード支払い',
@@ -155,10 +155,10 @@ class PurchaseTest extends TestCase
 
         $mockSession = \Mockery::mock('overload:\Stripe\Checkout\Session');
         $mockSession->shouldReceive('create')
-        ->once()
-        ->andReturn((object)[
-            'url' => route('purchase.success', ['item_id' => $item->id])
-        ]);
+            ->once()
+            ->andReturn((object)[
+                'url' => route('purchase.success', ['item_id' => $item->id])
+            ]);
 
         $response = $this->post(route('purchase.store', ['item_id' => $item->id]), [
             'payment' => 'カード支払い',
@@ -256,10 +256,10 @@ class PurchaseTest extends TestCase
 
         $mockSession = \Mockery::mock('overload:\Stripe\Checkout\Session');
         $mockSession->shouldReceive('create')
-        ->once()
-        ->andReturn((object)[
-            'url' => route('purchase.success', ['item_id' => $item->id])
-        ]);
+            ->once()
+            ->andReturn((object)[
+                'url' => route('purchase.success', ['item_id' => $item->id])
+            ]);
 
         $response = $this->post(route('purchase.store', ['item_id' => $item->id]), [
             'payment' => 'カード支払い',

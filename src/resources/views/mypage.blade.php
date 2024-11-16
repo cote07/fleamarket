@@ -12,13 +12,10 @@
     </div>
     <a href="{{ route('profile') }}" class="profile-link">プロフィールを編集</a>
 </div>
-
 <div class="tabs">
     <a href="/mypage?tab=sell" class="tab-link {{ $activeTab === 'sell' ? 'active' : '' }}">出品した商品</a>
     <a href="/mypage?tab=buy" class="tab-link {{ $activeTab === 'buy' ? 'active' : '' }}">購入した商品</a>
 </div>
-
-
 @if ($activeTab === 'sell')
 <div class="item-content">
     @foreach($recommendedItems as $item)
@@ -35,7 +32,6 @@
     @endforeach
 </div>
 @endif
-
 @if ($activeTab === 'buy')
 <div class=" item-content">
     @foreach($purchases as $purchase)
