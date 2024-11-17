@@ -36,10 +36,10 @@
     @foreach($favorites as $favorite)
     <div class="item-list">
         <a href="{{ route('item', ['item_id' => $favorite->item->id]) }}">
-            @if (Str::startsWith($favorite->item->item_picture, 'http'))
-            <img src="{{ $favorite->item->item_picture }}" alt="item Image" class="item-list-img">
-            @else
+            @if (Storage::exists('public/' . $favorite->item->item_picture))
             <img src="{{ asset('storage/' . $favorite->item->item_picture) }}" alt="item Image" class="item-list-img">
+            @else
+            <img src="{{ asset($favorite->item->item_picture) }}" alt="item Image" class="item-list-img">
             @endif
         </a>
         @if (in_array($favorite->item->id, $allPurchasedItems))

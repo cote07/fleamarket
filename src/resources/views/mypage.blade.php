@@ -37,10 +37,10 @@
     @foreach($purchases as $purchase)
     <div class="item-list">
         <a href="{{ route('item', ['item_id' => $purchase->item->id]) }}">
-            @if (Str::startsWith($purchase->item->item_picture, 'http'))
-            <img src="{{ $purchase->item->item_picture }}" alt="item Image" class="item-list-img">
-            @else
+            @if (Storage::exists('public/' . $purchase->item->item_picture))
             <img src="{{ asset('storage/' . $purchase->item->item_picture) }}" alt="item Image" class="item-list-img">
+            @else
+            <img src="{{ asset($purchase->item->item_picture) }}" alt="item Image" class="item-list-img">
             @endif
         </a>
         <p>{{ $purchase->item->name }}</p>
