@@ -50,6 +50,6 @@ class ProfileController extends Controller
         $activeTab = request('tab', 'sell');
         $profile = Profile::where('user_id', $userId)->first();
 
-        return view('mypage', compact('user', 'recommendedItems', 'purchases','activeTab', 'profile'));
+        return view('mypage', compact('user', 'recommendedItems', 'purchases', 'activeTab', 'profile'));
     }
 }

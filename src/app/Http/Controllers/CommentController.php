@@ -18,5 +18,4 @@ class CommentController extends Controller
 
         return redirect()->route('item', ['item_id' => $itemId]);
     }
-
 }

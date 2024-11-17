@@ -26,7 +26,7 @@ class Item extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class,'item_categories', 'item_id', 'category_id');
+        return $this->belongsToMany(Category::class, 'item_categories', 'item_id', 'category_id');
     }
 
     public function purchase()

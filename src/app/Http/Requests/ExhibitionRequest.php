@@ -48,5 +48,4 @@ class ExhibitionRequest extends FormRequest
             'price.min' => '価格は0円以上である必要があります',
         ];
     }
-
 }

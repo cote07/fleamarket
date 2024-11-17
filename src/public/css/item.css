@@ -206,6 +206,7 @@
 @media (max-width: 768px) {
     .information-flex {
         flex-direction: column;
+        gap: 0;
     }
 
     .span-condition {

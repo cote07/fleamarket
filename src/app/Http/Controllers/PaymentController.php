@@ -30,23 +30,23 @@ class PaymentController extends Controller
         session(['payment_method' => $paymentMethod]);
 
         if ($paymentMethod === 'カード支払い') {
-        $session = \Stripe\Checkout\Session::create([
-            'payment_method_types' => ['card'],
-            'line_items' => [[
-                'price_data' => [
-                    'currency' => 'jpy',
-                    'product_data' => [
-                        'name' => $item->name,
+            $session = \Stripe\Checkout\Session::create([
+                'payment_method_types' => ['card'],
+                'line_items' => [[
+                    'price_data' => [
+                        'currency' => 'jpy',
+                        'product_data' => [
+                            'name' => $item->name,
+                        ],
+                        'unit_amount' => $item->price,
                     ],
-                    'unit_amount' => $item->price,
-                ],
-                'quantity' => 1,
-            ]],
-            'mode' => 'payment',
-            'success_url' => route('purchase.success', ['item_id' => $item_id]),
-            'cancel_url' => route('purchase', ['item_id' => $item_id]),
-        ]);
-    }
+                    'quantity' => 1,
+                ]],
+                'mode' => 'payment',
+                'success_url' => route('purchase.success', ['item_id' => $item_id]),
+                'cancel_url' => route('purchase', ['item_id' => $item_id]),
+            ]);
+        }
 
         if ($paymentMethod === 'コンビニ支払い') {
             $session = \Stripe\Checkout\Session::create([
@@ -68,7 +68,7 @@ class PaymentController extends Controller
         }
 
         return redirect($session->url, 303);
-     }
+    }
 
     public function address($item_id)
     {
@@ -122,5 +122,4 @@ class PaymentController extends Controller
 
         return view('complete', ['item' => $item]);
     }
-
 }
