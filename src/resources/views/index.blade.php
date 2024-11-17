@@ -14,10 +14,10 @@
     @foreach($recommendedItems as $item)
     <div class="item-list">
         <a href="{{ route('item', ['item_id' => $item->id]) }}">
-            @if (Str::startsWith($item->item_picture, 'http'))
-            <img src="{{ $item->item_picture }}" alt="item Image" class="item-list-img">
-            @else
+            @if (Storage::exists('public/' . $item->item_picture))
             <img src="{{ asset('storage/' . $item->item_picture) }}" alt="item Image" class="item-list-img">
+            @else
+            <img src="{{ asset($item->item_picture) }}" alt="item Image" class="item-list-img">
             @endif
         </a>
         @if (in_array($item->id, $allPurchasedItems))

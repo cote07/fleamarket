@@ -7,10 +7,10 @@
 @section('content')
 <div class="item-detail">
     <div class="item-img">
-        @if (Str::startsWith($item->item_picture, 'http'))
-        <img src="{{ $item->item_picture }}" alt="item Image" class="item-list-img">
-        @else
+        @if (Storage::exists('public/' . $item->item_picture))
         <img src="{{ asset('storage/' . $item->item_picture) }}" alt="item Image" class="item-list-img">
+        @else
+        <img src="{{ asset($item->item_picture) }}" alt="item Image" class="item-list-img">
         @endif
     </div>
     <div class="item-text">

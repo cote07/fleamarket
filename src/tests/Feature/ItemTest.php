@@ -273,7 +273,7 @@ class ItemTest extends TestCase
             'item_picture' => 'sample-image.jpg',
         ]);
 
-        $profile = Profile::create([
+        Profile::create([
             'user_id' => $user->id,
             'postal_code' => '123-4567',
             'address' => 'Some Address, City',
@@ -302,7 +302,7 @@ class ItemTest extends TestCase
         $response->assertSee($item->description);
         $response->assertSee($item->price);
         $response->assertSee($item->condition);
-        $response->assertSee(asset('storage/' . $item->item_picture));
+        $response->assertSee($item->item_picture);
         $response->assertSee($category1->name);
         $response->assertSee($category2->name);
         $response->assertSeeText('1');
@@ -363,12 +363,14 @@ class ItemTest extends TestCase
 
         $response = $this->post(route('sell.store'), $itemData);
         $response->assertRedirect(route('index'));
+        $uploadedFilePath = 'images/' . $image->hashName();
 
         $this->assertDatabaseHas('items', [
             'user_id' => $user->id,
             'name' => 'Test User Item',
             'description' => 'This is an item created by the logged-in user.',
             'price' => 1000,
+            'item_picture' => $uploadedFilePath,
             'condition' => '良好',
         ]);
 
