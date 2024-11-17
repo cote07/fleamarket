@@ -9,7 +9,7 @@ use App\Models\Item;
 use App\Models\Profile;
 use Illuminate\Support\Facades\Session as FacadeSession;
 
-class PurchaseTest extends TestCase
+class PaymentTest extends TestCase
 {
     use RefreshDatabase;
     /**
@@ -45,7 +45,7 @@ class PurchaseTest extends TestCase
 
         $mockSession = \Mockery::mock('overload:\Stripe\Checkout\Session');
         $mockSession->shouldReceive('create')
-            ->once()
+        ->once()
             ->andReturn((object)[
                 'url' => route('purchase.success', ['item_id' => $item->id])
             ]);
@@ -98,7 +98,7 @@ class PurchaseTest extends TestCase
 
         $mockSession = \Mockery::mock('overload:\Stripe\Checkout\Session');
         $mockSession->shouldReceive('create')
-            ->once()
+        ->once()
             ->andReturn((object)[
                 'url' => route('purchase.success', ['item_id' => $item->id])
             ]);
@@ -155,7 +155,7 @@ class PurchaseTest extends TestCase
 
         $mockSession = \Mockery::mock('overload:\Stripe\Checkout\Session');
         $mockSession->shouldReceive('create')
-            ->once()
+        ->once()
             ->andReturn((object)[
                 'url' => route('purchase.success', ['item_id' => $item->id])
             ]);
@@ -256,7 +256,7 @@ class PurchaseTest extends TestCase
 
         $mockSession = \Mockery::mock('overload:\Stripe\Checkout\Session');
         $mockSession->shouldReceive('create')
-            ->once()
+        ->once()
             ->andReturn((object)[
                 'url' => route('purchase.success', ['item_id' => $item->id])
             ]);
