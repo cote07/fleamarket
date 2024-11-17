@@ -82,4 +82,16 @@ class RegisterTest extends TestCase
         $errors = session('errors');
         $this->assertEquals('パスワードと一致しません', $errors->get('password_confirmation')[0]);
     }
+
+    public function testRegistrationRedirects()
+    {
+        $response = $this->post('/register', [
+            'name' => 'John Doe',
+            'email' => 'test@example.com',
+            'password' => 'password123',
+            'password_confirmation' => 'password123'
+        ]);
+
+        $response->assertRedirect(route('verification.notice'));
+    }
 }
