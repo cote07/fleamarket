@@ -10,7 +10,7 @@
         @if (Str::startsWith($item->item_picture, 'http'))
         <img src="{{ $item->item_picture }}" alt="item Image" class="item-list-img">
         @else
-        <img src="{{ asset('storage/' . $item->item_picture) }}" alt="item Image">
+        <img src="{{ asset('storage/' . $item->item_picture) }}" alt="item Image" class="item-list-img">
         @endif
     </div>
     <div class="item-text">
@@ -61,14 +61,16 @@
             <h3 class="subtitle">商品の情報</h3>
             <div>
                 <div class="information-flex">
-                    <p class="information-text">カテゴリー</p>
-                    <div>
+                    <p class="information-text information-category">カテゴリー</p>
+                    <div class="category-flex">
                         @foreach($item->categories as $category)
                         <span class="span">{{ $category->content }}</span>
                         @endforeach
                     </div>
                 </div>
-                <p class="information-text">商品の状態<span class="span-condition">{{ $item->condition }}</span></p>
+                <div class="information-flex">
+                    <p class="information-text">商品の状態<span class="span-condition">{{ $item->condition }}</span></p>
+                </div>
             </div>
         </div>
         <div class="comment">

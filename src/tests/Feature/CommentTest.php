@@ -34,7 +34,7 @@ class CommentTest extends TestCase
 
         $this->assertEquals(0, $item->comments()->count());
 
-        $response = $this->post(route('comments.store', ['item' => $item->id]), [
+        $response = $this->post(route('comments.store', ['item_id' => $item->id]), [
             'content' => 'This is a test comment.',
         ]);
 
@@ -62,7 +62,7 @@ class CommentTest extends TestCase
             'item_picture' => 'test-image.jpg',
         ]);
 
-        $response = $this->post(route('comments.store', ['item' => $item->id]), [
+        $response = $this->post(route('comments.store', ['item_id' => $item->id]), [
             'content' => 'This is a test comment.',
         ]);
 

@@ -146,6 +146,11 @@ class ItemTest extends TestCase
             'item_picture' => 'test-image.jpg',
         ]);
 
+        Favorite::create([
+            'user_id' => $user->id,
+            'item_id' => $item->id,
+        ]);
+
         $response = $this->get('/?tab=mylist&keyword=');
         $response->assertStatus(200);
         $response->assertDontSee($item->name);

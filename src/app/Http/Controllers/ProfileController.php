@@ -46,7 +46,7 @@ class ProfileController extends Controller
         $userId = Auth::id();
         $user = User::findOrFail($userId);
         $recommendedItems = Item::where('user_id', $userId)->get();
-        $purchases = Purchase::all();
+        $purchases = Purchase::where('user_id', auth()->id())->get();
         $activeTab = request('tab', 'sell');
         $profile = Profile::where('user_id', $userId)->first();
 

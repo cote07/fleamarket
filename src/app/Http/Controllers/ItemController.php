@@ -27,7 +27,7 @@ class ItemController extends Controller
             })
             ->get();
 
-        $favorites = auth()->check() ? auth()->user()->favorites()->with('item')->get() : collect();
+        $favorites = auth()->check() ? auth()->user()->favorites()->with('item')->whereDoesntHave('item', fn($query) => $query->where('user_id', auth()->id()))->get() : collect();
         $purchasedItems = $user ? $user->purchases()->pluck('item_id')->toArray() : [];
         $allPurchasedItems = Purchase::pluck('item_id')->toArray();
 
@@ -37,7 +37,7 @@ class ItemController extends Controller
             });
         }
 
-        return view('index', compact('recommendedItems', 'favorites', 'activeTab', 'keyword','purchasedItems', 'allPurchasedItems'));
+        return view('index', compact('recommendedItems', 'favorites', 'activeTab', 'keyword', 'purchasedItems', 'allPurchasedItems'));
     }
 
     public function item($item_id)
@@ -47,7 +47,7 @@ class ItemController extends Controller
         $comments = $item->comments;
         $allPurchasedItems = Purchase::pluck('item_id')->toArray();
 
-        return view('item', compact('item', 'activeTab','comments', 'allPurchasedItems'));
+        return view('item', compact('item', 'activeTab', 'comments', 'allPurchasedItems'));
     }
 
     public function sell()

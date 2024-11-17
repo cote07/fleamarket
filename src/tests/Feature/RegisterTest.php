@@ -78,8 +78,8 @@ class RegisterTest extends TestCase
             'password_confirmation' => 'password321'
         ]);
 
-        $response->assertSessionHasErrors('password');
+        $response->assertSessionHasErrors('password_confirmation');
         $errors = session('errors');
-        $this->assertEquals('パスワードと一致しません', $errors->get('password')[0]);
+        $this->assertEquals('パスワードと一致しません', $errors->get('password_confirmation')[0]);
     }
 }

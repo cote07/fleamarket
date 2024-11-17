@@ -13,7 +13,7 @@
                 @if (Str::startsWith($item->item_picture, 'http'))
                 <img src="{{ $item->item_picture }}" alt="item Image" class="item-list-img">
                 @else
-                <img src="{{ asset('storage/' . $item->item_picture) }}" alt="item Image">
+                <img src="{{ asset('storage/' . $item->item_picture) }}" alt="item Image" class="item-list-img">
                 @endif
             </div>
             <div>
